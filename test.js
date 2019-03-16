@@ -52,13 +52,15 @@ test('Throws an error for an object with a circular reference', () => {
   try {
     result = JSON.stringify(object);
   } catch (e) {
-    expect(e).toBeDefined()
+    expect(e).toBeDefined();
+    expect(e.message).toBe('Converting circular structure to JSON')
   }
   expect(result).toBeUndefined();
   try {
     result = stringify(object);
   } catch (e) {
     expect(e).toBeDefined();
+    expect(e.message).toBe('Converting circular structure to JSON')
   }
   expect(result).toBeUndefined();
 });
