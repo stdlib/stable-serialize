@@ -1,6 +1,6 @@
 {
   "name": "stable-serialize",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Consistent stringify and hash for deeply equal objects",
   "main": "index.js",
   "scripts": {

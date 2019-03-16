@@ -40,3 +40,25 @@ test('Stringifies and hashes objects with different property orders in the same 
   expect(stringify(object1)).toBe(stringify(object2));
   expect(hash(object1)).toBe(hash(object2));
 });
+
+test('Throws an error for an object with a circular reference', () => {
+  let object = {};
+  object.a = {
+    a: 'a'
+  };
+  object.b = object.a;
+  object.a.b = object.b;
+  let result;
+  try {
+    result = JSON.stringify(object);
+  } catch (e) {
+    expect(e).toBeDefined()
+  }
+  expect(result).toBeUndefined();
+  try {
+    result = stringify(object);
+  } catch (e) {
+    expect(e).toBeDefined();
+  }
+  expect(result).toBeUndefined();
+});
